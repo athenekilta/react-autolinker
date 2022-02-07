@@ -22,6 +22,12 @@ export default class ReactAutolinker extends React.Component {
       ...options,
       replaceFn: (autolinker, match) => {
         const tag = autolinker.getTagBuilder().build(match);
+        console.log(match)
+        switch (match) {
+          case 'mention':
+            const mention = match.getMention();
+            tag.attrs.href = 'https://t.me/' + mention;
+        } 
         tags.push(tag);
         return tag;
       }
